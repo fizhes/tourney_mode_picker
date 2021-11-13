@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head><title>does carrot *really* look like npesta?</title></head>
+  <body>
+    <div style="margin-left:40vw;margin-top:10vh;">
+      <a style="color:magenta;">bans</a>
+      <select id="ban1">
+        <option value="classic">classic</option>
+        <option value="wall">wall</option>
+        <option value="portal">portal</option>
+        <option value="cheese">cheese</option>
+        <option value="infinity">infinity</option>
+        <option value="twin">twin</option>
+        <option value="winged">winged</option>
+        <option value="yinyang">yinyang</option>
+        <option value="key">key</option>
+        <option value="sokoban">sokoban</option>
+        <option value="multi1">multi1</option>
+        <option value="multi3">multi3</option>
+        <option value="multi5">multi5</option>
+      </select>
+      <select id="ban2">
+        <option value="classic">classic</option>
+        <option value="wall">wall</option>
+        <option value="portal">portal</option>
+        <option value="cheese">cheese</option>
+        <option value="infinity">infinity</option>
+        <option value="twin">twin</option>
+        <option value="winged">winged</option>
+        <option value="yinyang">yinyang</option>
+        <option value="key">key</option>
+        <option value="sokoban">sokoban</option>
+        <option value="multi1">multi1</option>
+        <option value="multi3">multi3</option>
+        <option value="multi5">multi5</option>
+      </select>
+
+      <br/><br/>
+
+      <button id="dothe">do the</button>
+
+      <br/><br/>
+
+      <div id="output" width="256" height="64"></div>
+      
+    </div>
+
+    <script>
+      const images = {
+        classic: new Image(),
+        wall: new Image(),
+        portal: new Image(),
+        cheese: new Image(),
+        infinity: new Image(),
+        twin: new Image(),
+        yinyang: new Image(),
+        winged: new Image(),
+        key: new Image(),
+        sokoban: new Image(),
+        multi1: new Image(),
+        multi3: new Image(),
+        multi5: new Image(),
+        normal: new Image(),
+        fast: new Image(),
+        standard: new Image(),
+        small: new Image(),
+      };
+
+      images.classic.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_00.png';
+      images.wall.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_01.png';
+      images.portal.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_02.png';
+      images.cheese.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_03.png';
+      images.infinity.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_04.png';
+      images.twin.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_05.png';
+      images.winged.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_06.png';
+      images.yinyang.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_07.png';
+      images.key.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_08.png';
+      images.sokoban.src = 'https://www.google.com/logos/fnbx/snake_arcade/v11/trophy_09.png';
+
+      images.multi1.src = 'https://www.google.com/logos/fnbx/snake_arcade/v3/count_00.png';
+      images.multi3.src = 'https://www.google.com/logos/fnbx/snake_arcade/v3/count_01.png';
+      images.multi5.src = 'https://www.google.com/logos/fnbx/snake_arcade/v3/count_02.png';
+
+      images.normal.src = 'https://www.google.com/logos/fnbx/snake_arcade/v3/speed_00.png';
+      images.fast.src = 'https://www.google.com/logos/fnbx/snake_arcade/v3/speed_01.png';
+
+      images.standard.src = 'https://www.google.com/logos/fnbx/snake_arcade/v4/size_00.png';
+      images.small.src = 'https://www.google.com/logos/fnbx/snake_arcade/v4/size_01.png';
+
+
+
+      document.getElementById('dothe').onclick = function _() {
+        let modes = [
+          'classic',
+          'wall',
+          'portal',
+          'cheese',
+          'infinity',
+          'twin',
+          'winged',
+          'yinyang',
+          'key',
+          'sokoban',
+        ];
+        let counts = [
+          'multi1',
+          'multi3',
+          'multi5',
+        ];
+        let speeds = [
+          'normal',
+          'fast',
+        ];
+        let sizes = [
+          'standard',
+          'small',
+        ];
+
+        const ban1 = document.getElementById('ban1').value;
+        const ban2 = document.getElementById('ban2').value;
+
+        if(ban1 === 'multi1' || ban1 === 'multi3' || ban1 === 'multi5') {
+          const i = counts.indexOf(ban1);
+          console.log(i);
+          if(i !== -1)
+            counts.splice(i, 1);
+        } else {
+          const i = modes.indexOf(ban1);
+          if(i !== -1)
+            modes.splice(i, 1);
+        }
+        if(ban2 === 'multi1' || ban2 === 'multi3' || ban2 === 'multi5') {
+          const i = counts.indexOf(ban2);
+          console.log(i);
+          if(i !== -1)
+            counts.splice(i, 1);
+        } else {
+          const i = modes.indexOf(ban2);
+          if(i !== -1)
+            modes.splice(i, 1);
+        }
+
+        const mode = modes[~~(Math.random() * modes.length)];
+        const count = counts[~~(Math.random() * counts.length)];
+        const speed = speeds[~~(Math.random() * speeds.length)];
+        const size = sizes[~~(Math.random() * sizes.length)];
+
+        if(mode === 'sokoban' && count === 'multi1')
+          return _();
+
+        
+        const modei = images[mode]; modei.width = modei.height = 64;
+        const counti = images[count]; counti.width = counti.height = 64;
+        const speedi = images[speed]; speedi.width = speedi.height = 64;
+        const sizei = images[size]; sizei.width = sizei.height = 64;
+        
+        let o = document.getElementById('output');
+        o.innerHTML = '';
+        
+
+        o.appendChild(modei);
+        o.appendChild(counti);
+        o.appendChild(speedi);
+        o.appendChild(sizei);
+
+        
+      };
+    </script>
+  </body>
+</html>
