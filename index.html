@@ -54,6 +54,8 @@
       <br/><br/>
 
       <div id="output" width="256" height="64"></div>
+      <br/>
+      <div id="attempts"></div>
       
     </div>
 
@@ -157,7 +159,7 @@
         const speed = speeds[~~(Math.random() * speeds.length)];
         const size = sizes[~~(Math.random() * sizes.length)];
 
-        if(mode === 'sokoban' && count === 'multi1')
+        if(mode === 'sokoban' && count === 'multi1' && size === 'standard')
           return _();
 
         
@@ -174,6 +176,15 @@
         o.appendChild(counti);
         o.appendChild(speedi);
         o.appendChild(sizei);
+
+
+        let attempts = 1;
+        if(size === 'small')
+          attempts = 2;
+        if(speed === 'fast')
+          attempts++;
+        
+        document.getElementById('attempts').innerHTML = `${attempts} attempt${attempts > 0 ? 's' : ''}`;
 
         
       };
